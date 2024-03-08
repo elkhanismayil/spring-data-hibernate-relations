@@ -29,11 +29,7 @@ jobs:
         run: ./gradlew test
 
       - name: Docker login
-        env:
-          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-          DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-        run: |
-          docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
+        run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
       - name: Build Docker image
         run: docker build . --file Dockerfile --tag elxan310/hibernate-relations:$(date +%s)
