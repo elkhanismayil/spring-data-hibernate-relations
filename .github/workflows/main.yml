@@ -19,11 +19,11 @@ jobs:
           distribution: 'adopt'
           cache: gradle
 
-      - name: Run build with Gradle Wrapper
-        run: ./gradlew build
-
       - name: Make gradlew executable
         run: chmod +x ./gradlew
+
+      - name: Run build with Gradle Wrapper
+        run: ./gradlew build
 
       - name: Run tests with Gradle Wrapper
         run: ./gradlew test
