@@ -1,7 +1,7 @@
 name: Github Actions CI/CD Pipeline for my spring boot application
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
