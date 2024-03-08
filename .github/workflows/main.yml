@@ -16,14 +16,27 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '17'
-          distribution: 'adopt'
+          distribution: 'alpine'
           cache: gradle
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
       - name: Run build with Gradle Wrapper
-        run: ./gradlew build
+        run: ./gradlew clean build
 
       - name: Run tests with Gradle Wrapper
         run: ./gradlew test
+
+      - name: Docker login
+        env:
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
+
+      - name: Build Docker image
+        run: docker build . --file Dockerfile --tag elxan310/hibernate-relations:$(date +%s)
+
+      - name: Push Docker image to Docker Hub
+        run: docker push elxan310/hibernate-relations
