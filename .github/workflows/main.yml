@@ -35,4 +35,4 @@ jobs:
         run: docker build . --file Dockerfile --tag elxan310/hibernate-relations:$(date +%s)
 
       - name: Push Docker image to Docker Hub
-        run: docker push elxan310/hibernate-relations
+        run: docker push elxan310/hibernate-relations:$(date +%s)
