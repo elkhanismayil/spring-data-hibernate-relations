@@ -2,8 +2,6 @@ name: Github Actions CI/CD Pipeline for my spring boot application
 
 on:
   push:
-    paths-ignore:
-      - 'test/**'
     branches:
       - main
 
