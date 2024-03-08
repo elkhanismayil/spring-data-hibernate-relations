@@ -1,4 +1,4 @@
-name: Github Actions for my Spring Boot app
+name: Github CI/CD for Spring Boot app
 
 on:
   push:
