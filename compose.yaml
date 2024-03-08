@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: 'postgres:13.2'
+    environment:
+      - 'POSTGRES_DB=hibernate_relationships'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=postgres'
+    ports:
+      - '5430:5432'
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
